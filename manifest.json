@@ -1,12 +1,16 @@
 {
-  "version": "1.0.0",
   "manifest_version": 3,
-  "name": "Mi primera extension de chrome",
-  "description": "Esta es mi primera extension de chrome",
-  "icons": {
-    "128": "src/box.png"
+  "name": "Screen Capture Extension",
+  "description": "Captura pantallas de otras pestañas",
+  "version": "1.0",
+  "permissions": ["activeTab", "tabs", "storage", "scripting"],
+  "background": {
+    "service_worker": "src/background.js"
   },
   "action": {
-    "default_popup": "src/popup.html"
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "128": "src/box.png"
+    }
   }
 }

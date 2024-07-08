@@ -1,8 +1,14 @@
-const message = document.querySelector('#message');
-const button = document.querySelector('#change-message');
+document.getElementById('capture').addEventListener('click', () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.captureVisibleTab(tabs[0].windowId, {}, (image) => {
+        document.getElementById('screenshot').src = image;
+        console.log('Screenshot', image);
+        chrome.storage.local.set({ screenshot: image }, () => {
+          console.log('Screenshot saved.');
 
-button.addEventListener('click', () => {
-    message.innerText = 'Hello, World!';
-
-    alert('Hello, World!');
-});
+        //   chrome.runtime.sendMessage({ action: "screenshotCaptured" });
+        });
+      });
+    });
+  });
+  
